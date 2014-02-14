@@ -1,0 +1,28 @@
+<project name="FrejDemo" default="jar" basedir=".">
+
+    <property name="rootDir" value="."/>
+    <property name="prjDir" value="${rootDir}/../.."/>
+    <property name="jarFile" value="${ant.project.name}.jar"/>
+
+    <target name="jar">
+        <ant dir="${prjDir}"/>
+        <javac srcdir="${rootDir}" includes="*.java"
+                includeantruntime="${false}"
+                classpath="${prjDir}/frej.jar"/>
+        <jar destfile="${jarFile}">
+            <fileset file="${rootDir}/*.class"/>
+            <zipfileset src="${prjDir}/frej.jar" includes="net/java/frej/**"/>
+            <manifest>
+                <attribute name="Implementation-Title" value="FREJ Demo Applet"/>
+                <attribute name="Implementation-Vendor" value="http://frej.sf.net"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="clean">
+        <delete includeemptydirs="true" quiet="true">
+            <fileset file="${rootDir}/*.class"/>
+        </delete>
+    </target>
+
+</project>

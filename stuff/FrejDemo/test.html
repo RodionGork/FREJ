@@ -1,0 +1,57 @@
+<html>
+<body bgcolor="magenta">
+
+<applet align="right" code="FrejDemo.class" archive="FrejDemo.jar"
+        width="45%" height="70%">FREJ demo applet would be loaded here!</applet>
+
+<p><b>FREJ</b> means "Fuzzy Regular Expressions for Java".</p>
+
+<p>It is simple library (and command-line grep-like utility) which
+could help you when you are in need of approximate string matching or
+substring searching with the help of primitive regular expressions.</p>
+
+<p>What is "approximate" (or "fuzzy") string comparison?<br/>Just imagine
+that you deal with information (like orders) which is sent to you by many
+people. When these people mention names of places or persons, they could
+bring to you problems of two kinds:
+<ul>
+<li>they make nasty typos;</li>
+<li>they use different variants of names;</li>
+</ul>
+</p>
+
+<p>For example if you are responsible for checking incoming mail in Washington DC,
+you may want to find letters addressed to US president. You try to find all
+which contains words "Barack Obama" on envelope. But you soon discover
+that sometimes people address this person as "Barack Hussein Obama II" and
+sometimes like "B. H. Obama" and also "Barak H. Abama" (note typos).</p>
+
+<p>You read google and wikipedia and found that you can compare "Barak" with
+"Barack" and "Baarck" etc. with the help of "approximate string matching
+algorithm", also called "fuzzy string matching". But after you use or implement
+some of algorithms you found that it is not sufficient. You need "approximate"
+substring search, and ability to specify some complex patterns (for example
+country could be specified like "Russia" and like "Russian Federation" - but
+it should not be mixed with "Belarussian Republic" etc.</p>
+
+<p>Later you even find out that you sometimes need some automatic substitutions
+to be described by patterns themselves (for example if you found that the
+envelope is signed for one of Barack Obama or John McCain, you would like
+the correct name to be supposed at once, excluding any typos). You now understand
+that you need regular expressions.</p>
+
+<p>If you want library which can simultaneously use regular expressions and
+approximate string matching, you will found that here is TRE. But it is for
+C++. FREJ project is much simpler and far not as efficient, but it is for
+Java and if your task does not require millions of comparisions against very
+complicated patterns per seconds - you may found it useful.</p>
+
+<p>Now I am working on filling this resource with descriptions, documentations
+and also on slight improvement of my library. Simple guide to regexp syntax
+is already provided and aided with examples (but would be improved further).
+Also there is working library, javadocs and sample "grep-like" utility
+(which tests input lines against specified pattern and provides replacement
+if specified, and if line does match the pattern.</p>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+2                                           number of test patterns
+1                                           pattern size (lines)
+{(?test),frej}|IT_WORKS
+3                                           testcases quantity
+exact test frej
+IT WORKS
+fail testfrej
+exact tost freej
+IT WORKS
+3                                           pattern size (lines)
+{= (@good), (@job) }
+::good (^well,nice,pretty,good)
+::job  (^work|*1,job|*3,labour|*9)
+2                                           testcases quantity
+exact Well Job
+well*3
+exact pretty labour
+pretty*9
