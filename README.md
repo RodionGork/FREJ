@@ -17,4 +17,6 @@ For example an expression:
 
 Converts the name of the person (possibly misspelt) to `N-th president of USA` phrase.
 
-Demo applet could be found at [frej.sf.net](http://frej.sourceforge.net/)
+[Complete documentation on patterns](http://frej.sourceforge.net/rules.html)
+
+More detailed older project page and demo applet could be found at [frej.sf.net](http://frej.sourceforge.net/)
