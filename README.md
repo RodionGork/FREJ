@@ -20,3 +20,5 @@ Converts the name of the person (possibly misspelt) to `N-th president of USA` p
 [Complete documentation on patterns](http://frej.sourceforge.net/rules.html)
 
 More detailed older project page and demo applet could be found at [frej.sf.net](http://frej.sourceforge.net/)
+
+[Download binary (jar-file) here](http://sourceforge.net/projects/frej/files/)
