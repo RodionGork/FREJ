@@ -29,9 +29,12 @@ final class Token extends Elem {
     private String token;
     private boolean partial;
     
+    private Fuzzy fuzzy;
+    
     
     Token(Regex owner, String token) {
         super(owner);
+        fuzzy = owner.getFuzzy();
         changePattern(token);
     } // FuzzyRegexToken
 
@@ -47,16 +50,16 @@ final class Token extends Elem {
         } // if
         
         if (partial && owner.tokens[i].length() > token.length()) {
-            Fuzzy.similarity(owner.tokens[i].substring(0, token.length()), token);
+            fuzzy.similarity(owner.tokens[i].substring(0, token.length()), token);
         } else {
-            Fuzzy.similarity(owner.tokens[i], token);
+            fuzzy.similarity(owner.tokens[i], token);
         } // else
         
         matchLen = 1;
 
         saveGroup();
         
-        return Fuzzy.result;
+        return fuzzy.result;
     } // matchAt
     
     

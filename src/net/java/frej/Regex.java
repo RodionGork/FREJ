@@ -49,6 +49,7 @@ public final class Regex {
         SEPARATOR, DIGIT, LETTER, ALLOWED_PUNCT
     } // CharType
     
+    private Fuzzy fuzzy = new Fuzzy();
     private Elem root;
     private Special terminator = new Special(this, null);
     String[] tokens;
@@ -58,7 +59,7 @@ public final class Regex {
     private int firstMatched, lastMatched;
     GroupMap groups = new GroupMap();
     private String allowedPunct = "/-";
-    private double threshold = Fuzzy.threshold;
+    private double threshold = fuzzy.threshold;
     Map<String, Elem> subs = new HashMap<String, Elem>();
     
     
@@ -613,6 +614,9 @@ public final class Regex {
     void setGroup(String name, String s) {
         groups.put(name, s);
     } // setGroup
-
+    
+    Fuzzy getFuzzy() {
+        return fuzzy;
+    }
 
 } // class FuzzyRegex

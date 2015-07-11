@@ -34,31 +34,28 @@ import java.util.*;
  * types of "mistakes" each counting as 1 point (char deletion, char adding,
  * char replacement, swap of two adjacent chars).
  * 
- * Methods are static, and resulting variables too, so necessary values should
- * be read before new matching/searching attempt.
- * 
  * @author Rodion Gorkovenko
  */
 public final class Fuzzy {
     
     /** keeps starting position of matched region after substring search*/
-    public static int resultStart;
+    public int resultStart;
     /** keeps ending position of matched region after substring search*/
-    public static int resultEnd;
+    public int resultEnd;
     /** keeps index of best match after matching against a list of strings*/
-    public static int resultIndex;
+    public int resultIndex;
     /** keeps best matched string after matching against a list of strings*/
-    public static String matchedPattern;
+    public String matchedPattern;
     /** "distance" of last match (roughly mistakes count divided by length*/
-    public static double result;
+    public double result;
     /** if result of match is higher than threshold, boolean methods return "false" */
-    public static double threshold = 0.34;
+    public double threshold = 0.34;
 
-    protected static final int MAX_PATTERN = 64;
-    protected static final int MAX_SOURCE = 256;
-    protected static final int BIG_VALUE = 1000000;
-    protected static int[][] e = new int[MAX_PATTERN + 1][MAX_SOURCE + 1];
-    protected static WayType[][] w = new WayType[MAX_PATTERN + 1][MAX_SOURCE + 1];
+    protected final int MAX_PATTERN = 64;
+    protected final int MAX_SOURCE = 256;
+    protected final int BIG_VALUE = 1000000;
+    protected int[][] e = new int[MAX_PATTERN + 1][MAX_SOURCE + 1];
+    protected WayType[][] w = new WayType[MAX_PATTERN + 1][MAX_SOURCE + 1];
     
     
     private static enum WayType {
@@ -72,7 +69,7 @@ public final class Fuzzy {
      * @return position of found substring (0 .. source.length() - 1) or (-1) if
      * substring was not found (with given threshold).
      */
-    public static int substrStart(CharSequence source, CharSequence pattern) {
+    public int substrStart(CharSequence source, CharSequence pattern) {
         
         if (containability(source, pattern) < threshold)
             return resultStart;
@@ -87,7 +84,7 @@ public final class Fuzzy {
      * @return position of found substring end (0 .. source.length() - 1) or (-1) if
      * substring was not found (with given threshold).
      */
-    public static int substrEnd(CharSequence source, CharSequence pattern) {
+    public int substrEnd(CharSequence source, CharSequence pattern) {
         
         if (containability(source, pattern) < threshold)
             return resultEnd;
@@ -100,7 +97,7 @@ public final class Fuzzy {
      * Tests whether "source" matches "pattern".
      * @return true or false depending on match quality.
      */
-    public static boolean equals(CharSequence source, CharSequence pattern) {
+    public boolean equals(CharSequence source, CharSequence pattern) {
         return similarity(source, pattern) < threshold;
     } // compare
     
@@ -110,7 +107,7 @@ public final class Fuzzy {
      * Stops on first good match.
      * @return true or false depending on whether any of pattern search succeeds.
      */
-    public static boolean containsOneOf(CharSequence source, CharSequence... patterns) {
+    public boolean containsOneOf(CharSequence source, CharSequence... patterns) {
         
         for (CharSequence p : patterns) {
             if (containability(source, p) < threshold) {
@@ -127,7 +124,7 @@ public final class Fuzzy {
      * Demerau-Levenshtein distance is minimal.
      * @return normalized best distance (i.e. distance / pattern.length())
      */
-    public static double containability(CharSequence source, CharSequence pattern) {
+    public double containability(CharSequence source, CharSequence pattern) {
         int m = pattern.length() + 1;
         int n = source.length() + 1;
         int best, start;
@@ -224,7 +221,7 @@ public final class Fuzzy {
      * (equality=false).
      * @return best match result (normalized distance). 
      */
-    public static double bestEqual(String string, Object patterns, boolean equality) {
+    public double bestEqual(String string, Object patterns, boolean equality) {
         String[] array;
         double value = Double.POSITIVE_INFINITY;
         
@@ -256,7 +253,7 @@ public final class Fuzzy {
      * Core method for measuring Demerau-Levenshtein distance between two strings.
      * @return normalized distance (distance / average(source.length(), pattern.length()))
      */
-    public static double similarity(CharSequence source, CharSequence pattern) {
+    public double similarity(CharSequence source, CharSequence pattern) {
         int m;
         int n;
         char s, p, s1, p1;
