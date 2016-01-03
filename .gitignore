@@ -2,3 +2,6 @@ target/
 bin/
 frej.jar
 
+/.project
+/.settings/
+/.classpath
