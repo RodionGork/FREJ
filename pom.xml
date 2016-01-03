@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.java.frej</groupId>
+  <artifactId>frej</artifactId>
+  <version>1.1.58</version>
+  
+  <name>FREJ (Free Regular Expressions for Java)</name>
+  <description>Free Regular Expressions for Java</description>
+  
+  <organization>
+  	<name>http://frej.sf.net</name>
+  	<url>http://frej.sf.net</url>
+  </organization>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <profiles>
+  	<profile>
+      <id>local</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.3</version>
+            <configuration>
+              <excludes>
+                <exclude>FrejDemo.java</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>test.Main</mainClass>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                  <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
+                </manifest>
+                <manifestEntries>
+                  <built-by>Rodion Gork</built-by>              
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.10.3</version>
+            <configuration>
+              <show>public</show>
+              <nohelp>false</nohelp>
+              <reportOutputDirectory>${project.build.directory}/</reportOutputDirectory>
+              <windowtitle>FREJ - Fuzzy Regular Expressions for Java</windowtitle>
+              <noqualifier>java.lang</noqualifier>
+            </configuration>
+            <executions>
+              <execution>
+                 <id>attach-javadocs</id>
+                 <goals>
+                    <goal>jar</goal>
+                  </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <excludes>
+              <exclude>test.html</exclude>
+            </excludes>
+          </resource>
+        </resources>
+      </build>
+  	</profile>
+    
+    <profile>
+      <id>demo</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+              <finalName>FrejDemo</finalName>
+              <archive>
+                <manifest>
+                  <mainClass>test.Main</mainClass>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                  <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
+                </manifest>
+                <manifestEntries>
+                  <built-by>Rodion Gork</built-by>  
+                  <implementation-title>FREJ Demo Applet</implementation-title>            
+                </manifestEntries>
+              </archive>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

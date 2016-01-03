@@ -1,0 +1,47 @@
+The mavenization process has kept the overal contents.
+
+It has changed directory structure in accordance to the maven standards.
+
+Besides, some ant task have been replaced by maven goals.
+For instance:
+
+* build: instead of "ant"
+
+  mvn install
+  
+  o better
+  
+  mvn clean install
+  
+  it will create target/frej-1.158.jar
+
+
+* clean: 
+
+	mvn clean
+
+
+* javadoc: instead of "ant doc" you must use:
+
+  mvn javadoc:javadoc
+  
+  it creates api javadoc under target/apidocs
+  
+  mvn javadoc:jar
+  
+  it creates a jar archive, e.g. target/frej-1.1.58-javadoc.jar, containing the html pages
+  
+ 
+ * all: instead of "ant all"
+ 
+   mvn install
+   
+   it will create both target/frej-1.1.58-javadoc.jar and target/frej-1.1.58.jar
+   
+   
+ * demo: 
+ 
+   mvn install -Pdemo
+   
+   it behaves like the previous 'mvn jar' but this time the target/frej-1.1.58.jar
+    will contain the applet code and the test.html too
